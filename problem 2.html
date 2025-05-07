@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact List Manager</title>
+</head>
+<body>
+  <h2>Contact List</h2>
+  <input type="text" id="nameInput" placeholder="Enter name">
+  <button onclick="addContact()">Add</button>
+  <button onclick="removeContact()">Remove</button>
+
+  <p><strong>Contacts:</strong> <span id="contactList">[empty]</span></p>
+
+  <script>
+    let contacts = [];
+
+    function addContact() {
+      const name = document.getElementById("nameInput").value.trim();
+      if (name === "") {
+        alert("Please enter a name.");
+        return;
+      }
+
+      if (contacts.length >= 7) {
+        contacts.shift(); // Remove the first element if at limit
+      }
+
+      contacts.push(name);
+      updateDisplay();
+      document.getElementById("nameInput").value = "";
+    }
+
+    function removeContact() {
+      contacts.pop(); // Remove last name
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      const display = contacts.length > 0 ? contacts.join(" ") : "[empty]";
+      document.getElementById("contactList").textContent = display;
+    }
+  </script>
+</body>
+</html>

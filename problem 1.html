@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shape Generator</title>
+</head>
+<body>
+  <h2>Shape Generator</h2>
+  <label for="numberInput">Enter a number:</label>
+  <input type="text" id="numberInput">
+  <button onclick="generateShape()">Submit</button>
+  <pre id="output"></pre>
+
+  <script>
+    function generateShape() {
+      let num;
+      do {
+        let input = document.getElementById('numberInput').value;
+        if (!isNaN(input) && input.trim() !== '') {
+          num = parseInt(input);
+          break;
+        } else {
+          alert("Please enter a valid number.");
+          return;
+        }
+      } while (true);
+
+      let result = `Number inputted: ${num}\n\n`;
+      if (num % 2 !== 0) {
+        // Odd - Rectangle
+        for (let i = num; i >= 1; i--) {
+          result += (i + " ").repeat(num).trim() + "\n";
+        }
+      } else {
+        // Even - Triangle
+        for (let i = num; i >= 1; i--) {
+          result += (i + " ").repeat(i).trim() + "\n";
+        }
+      }
+      document.getElementById("output").textContent = result;
+    }
+  </script>
+</body>
+</html>
